@@ -1,0 +1,22 @@
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background-color: rgb(102, 23, 23);
+}
+button {
+    padding: 5% 10%;
+    font-size: 3vh;
+    background-color: rgba(139, 18, 18, 0.233);
+    color: rgb(253, 89, 89);
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.8s ease;
+}
+button:hover {
+    background-color: rgb(87, 9, 9);
+}

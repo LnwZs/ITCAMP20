@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Itim&family=Kanit:wght@300&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<title>พยากรณ์ 12 ราศี</title>
+<style>
+
+</style>
+</head>
+<body>
+
+<div class="container" style="text-align: center;">
+  <h1>พยากรณ์ 12 ราศี ตามตำราพรหมชาติ  </h1>
+  <div style="text-align: center;">
+  <p>กรุณาเลือกเพศของคุณ:</p>
+  <label><input type="radio" name="gender" value="male"> ชาย</label>
+  <label><input type="radio" name="gender" value="female"> หญิง</label>
+  <button onclick="calculateHoroscope()">พยากรณ์</button>
+  </div>
+  <div id="horoscopeResult"></div>
+</div>
+
+<script>
+  function calculateHoroscope() {
+    var gender = document.querySelector('input[name="gender"]:checked');
+    if (gender) {
+      var year = prompt("โปรดกรอกอายุของคุณ:");
+      if (year !== null && year !== "") {
+        var yearInt = parseInt(year);
+        if (!isNaN(yearInt)) {
+          var zodiac = calculateZodiac(yearInt, gender.value);
+          displayResult(zodiac);
+        } else {
+          alert("โปรดกรอกปีเป็นตัวเลข");
+        }
+      }
+    } else {
+      alert("โปรดเลือกเพศ");
+    }
+  }
+
+  function calculateZodiac(year, gender) {
+    var start = 0;
+    var index = (start + year) % 12;
+    if (gender == "female") {
+        index = (start + (12 - (year % 12))) % 12;
+    }
+    console.log(index);
+    return index;
+  }
+
+  function displayResult(zodiac) {
+    var resultElement = document.getElementById("horoscopeResult");
+    var zodiacs = ["เจดีย์", "ฉัตรเงิน", "คนคอขาด", "เรื่อนหลวง", "ปราสาท", "ราหู", "ฉัตรทอง", "เทวดาขี่เต่า", "คนต้องขื่อคา", "พ่อหมอ", "แม่มด", "นาคราช"];
+    console.log("zodia"+ zodiac)
+    switch (zodiac) {
+    case 0:
+        data = "ชะตาของท่านในปีนั้น ท่านจะได้ใช้ชีวิตอย่างร่มเย็นเป็นสุข จะมีแต่ความสุขกายสบายใจ จะได้ทำบุญกุศลในศาสนา ปรารถนาสิ่งใดจะได้สมดั่งหวังทุกประการ";
+        break;
+    case 1:
+        data = "ชะตาของท่านในปีนั้น ท่านจะมีสุข จะมีโชคลาภเงินทองมากมาย จะมีผู้ใหญ่อุปถัมภ์ค้ำจุน ถ้าทำราชการหรือค้าขาย ก็จะมีความเจริญก้าวหน้ายิ่งขึ้น";
+        break;
+    case 2:
+        data = "ชะตาของท่านในปีนั้น ท่านจะได้รับความเดือดร้อน จะได้รับความร้อนใจต่าง ๆ ซึ่งจะมีผู้ทำให้แก่ท่าน และจะได้รับความทุกข์ยากลำบาก ทำให้ท่านต้องเสียทรัพย์สินเงินทองอยู่เสมอ";
+        break;
+    case 3:
+        data = "ชะตาของท่านในปีนั้น ท่านจะได้รับแต่ความสุขสบาย มีความเจริญก้าวหน้าในกิจการทุกอย่าง ท่านจะมีโชคลาภ ได้เงินทอง จะมีผู้อุปถัมภ์อย่างดียิ่ง พวกศัตรูที่คิดร้ายจะแพ้ภัยตัวเอง";
+        break;
+    case 4:
+        data = "ชะตาของท่านในปีนั้น ถ้าเป็นโสดจะได้พบเนื้อคู่ ชะตาชีวิตของท่านจะได้พบแต่ความสุข เจริญก้าวหน้า กิจการที่ทำจะได้ผลประโยชน์แก่ท่านเป็นที่พึงใจ จะสมความปรารถนาทุกประการ จะได้สัตว์ 4 เท้า 2 เท้า ถ้าค้าขายจะร่ำรวย";
+        break;
+    case 5:
+        data = "ชะตาของท่านในปีนั้น ท่านจะได้รับความร้อนอกร้อนใจ จะเป็นถ้อยความผู้อื่นที่ทำให้ท่านได้รับความร้อนใจอยู่เสมอ ทำให้ท่านต้องเสียทรัพย์สินเงินทอง จะเกิดเป็นปากเสียงกับเพื่อนบ้าน จะพบกับความวุ่นวายอย่างไม่รู้จบ และจะเกิดเจ็บป่วยขึ้นแก่ท่าน";
+        break;
+    case 6:
+        data = "ชะตาของท่านในปีนั้น ท่านจะได้ประสบโชคลาภ มั่งมีด้วยทรัพย์สินเงินทอง พร้อมด้วยลาภยศมิตรสหาย จะมีผู้ใหญ่คอยให้ความอุปถัมภ์เป็นอย่างดี ชะตาชีวิตของท่านในปีนี้ จะมีแต่ความสุขความเจริญสบายใจ";
+        break;
+    case 7:
+        data = "ชะตาของท่านในปีนั้น ท่านจะมีความสุขพอประมาณ การเงินการทองพอมีใช้มีจ่าย จะทำอะไรจงคิดให้รอบคอบเสียก่อน มิฉะนั้นจะเกิดผลผิดพลาดขึ้นได้ และจะทำให้เดือดร้อนใจ";
+        break;
+    case 8:
+        data = "ชะตาของท่านในปีนั้น จัดว่าชะตาตกอยู่ในฐานะมิสู้ดี จงมีความระวังในญาติพี่น้อง จะนำความเดือดร้อนใจมาให้ คนรักมักจะเอาใจออกห่าง ให้ระวังอันตราย เร่งจำศีลภาวนา จงทำบุญกุศลสะเดาะเคราะห์ อย่าเดินทางไกล จะได้รับโทษทัณฑ์อาญา";
+        break;
+    case 9:
+        data = "ชะตาของท่านในปีนั้น จะพบผู้ใหญ่อุปถัมภ์ค้ำชูแก่ท่าน ให้ยศศักดิ์ ท่านจะมีความสุขเจริญก้าวหน้า จะมีโชคลาภมาสู่ท่าน เป็นที่พึงใจยิ่ง โพยภัยมิได้มีมาพ้องพานเลย";
+        break;
+    case 10:
+        data = "ชะตาของท่านในปีนั้น ท่านจะได้พบผู้เฒ่าเจ้านายที่มีความค้ำชูให้ท่านได้พบกับความสุขความเจริญ คำพูดของท่านจะเป็นที่ไว้เนื้อเชื่อใจแก่คนทั้งหลาย จะไปแห่งใดมีแต่คนรักใคร่ จะมีผู้นำโชคลาภมาให้แต่ไม่มากนัก ท่านจะต้องเหนื่อยกายและใจบ้าง";
+        break;
+    case 11:
+        data = "ชะตาของท่านในปีนั้น จัดว่าร้าย จงระวังจะเกิดพยาธิ การเจ็บไข้ได้รับความเจ็บปวด เลือดจะออกจากตัว ให้เกรงเขี้ยวงาและของมีคม จะมีผู้ปองร้าย จงจำศีลภาวนา อย่าเบียดเบียนสัตว์ ทุกข์จะบรรเทาโทษแล";
+        break;
+    default:
+        data = "อัลเลาห์จะลงโทษคุณ"
+        break;
+}
+    resultElement.innerHTML = "<h2>ราศีของคุณคือ " + zodiacs[zodiac] + "<h4 style='color: #6a6a6a;'>" + data+ "</h4>" +" </h2> <hr> <img style='margin-top: 17px; height: auto; max-width: 100%; border-radius: 25px;' src='https://s.isanook.com/ho/0/ud/24/120681/p1.jpg?ip/resize/w728/q80/jpg' alt='' srcset=''>" ;
+  }
+</script>
+
+</body>
+</html>
